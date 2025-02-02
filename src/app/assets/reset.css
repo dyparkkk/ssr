@@ -1,0 +1,226 @@
+/* reset.css */
+/* Reset default browser styles */
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+/* Reset list styles */
+ol,
+ul {
+  list-style: none;
+}
+
+/* Reset quotes */
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: "";
+  content: none;
+}
+
+/* Reset table styles */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* General reset */
+body {
+  line-height: 1;
+  font-family: sans-serif;
+}
+
+/* Reset anchor elements */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Reset image styles */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Input and button reset */
+button,
+input,
+select,
+textarea {
+  margin: 0;
+  font: inherit;
+}
+button {
+  background: inherit;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+}
+
+/* Reset box-sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/* margin-top */
+.mt0 {
+  margin-top: 0 !important;
+}
+.mt5 {
+  margin-top: 5px !important;
+}
+.mt8 {
+  margin-top: 8px !important;
+}
+.mt14 {
+  margin-top: 14px !important;
+}
+.mt16 {
+  margin-top: 16px !important;
+}
+.mt20 {
+  margin-top: 20px !important;
+}
+.mt24 {
+  margin-top: 24px !important;
+}
+.mt32 {
+  margin-top: 32px !important;
+}
+/* margin-bottom */
+.mb20 {
+  margin-bottom: 20px !important;
+}
+/* margin-right */
+.mr6 {
+  margin-right: 6px !important;
+}
+/* padding-top */
+.pt0 {
+  padding-top: 0 !important;
+}
+.pt8 {
+  padding-top: 8px !important;
+}
+.pt16 {
+  padding-top: 16px !important;
+}
+.pt24 {
+  padding-top: 24px !important;
+}
+/* font-size */
+.ft18 {
+  font-size: 18px !important;
+}

@@ -1,101 +1,66 @@
-import Image from "next/image";
+import RotateSwiperSection from './RotateSwiperSection';
+import { formatDateTime } from './dataUtils';
+import BottomSheet from './BottomSheat';
+import AnalyzeSwiperSection from './AnalyzeSwiperSection';
+import './assets/scss/common.scss';
+import './assets/reset.css';
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+async function getData() {
+    const res = await fetch('https://search-services.aicall-lgudev.com/v1/search/list?', {
+        headers: {
+            Authorization: 'Bearer ' + process.env.NEXT_PUBLIC_AUTH_TOKEN, 
+            'Content-Type': 'application/json',
+        },
+    });
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    if (!res.ok) {
+        console.log(`Error :${res.status}`);
+        // throw new Error(`HTTP error! ${res}`);
+    }
+
+    const data = await res.json();
+    return data;
+}
+
+export default async function Home() {
+    const theme = 'dark';
+    const topOffset = 0;
+
+    let data = await getData();
+    data = data.data
+    console.log('API Response: data.callList :', data);
+
+    return (
+        <div className={`ixi-O-container ${theme}`}>
+            <div className='title-wrap'>
+                <picture>
+                    {/*<source srcSet="/res/img/ai-tips.webp" type="image/webp" />*/}
+                    <img src='/res/img/ai-tips.png' alt='' />
+                </picture>
+                <h2 className='title-wrap__title'>{data.callList?.[0]?.pushBody}</h2>
+                <p className='title-wrap__use-info'>
+                    <span className='user'>
+                        {/*<img*/}
+                        {/*    src='https://dummyimage.com/20x20/000000/fff'*/}
+                        {/*    alt='사용자 프로필 아이콘 이미지'*/}
+                        {/*    className='mr6'*/}
+                        {/*/>*/}
+                        <em>{data.callList?.[0]?.name}</em>
+                        <span>&nbsp;님과 통화</span>
+                    </span>
+                    <span className='time'>
+                        {data.callList?.[0]?.callStartTime ? formatDateTime(data.callList?.[0].callStartTime) : '-'}
+                    </span>
+                </p>
+            </div>
+
+            <RotateSwiperSection callList={[data.callList?.[0]]} />
+            {/* {data?.callList?.length > 1 && (
+                <BottomSheet initialOffsetY={topOffset}>
+                    <AnalyzeSwiperSection callList={data.callList.slice(1)} />
+                </BottomSheet>
+            )} */}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+    );
 }

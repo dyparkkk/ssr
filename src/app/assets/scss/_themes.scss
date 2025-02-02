@@ -1,0 +1,149 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+// 다크모드 분기
+.ixi-O-container.dark{
+  .swiper {
+    &.analyzeSwiper {
+      .swiper-slide {
+        .item {
+          .title-box {
+            .title {
+              color: #FCFCFD;
+            }
+            .desc {
+              & > p {
+                color: #9e4eff;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .swiper-controll-wrap {
+    .swiper {
+      &-button {
+        &-prev,
+        &-next {
+          background: url("/res/img/analyze_card_arrow--dark.svg")
+            no-repeat 0 0;
+          background-size: 100%;
+          opacity: 1;
+        }
+        &-next {
+          transform: rotate(180deg);
+        }
+      }
+      &-pagination {
+        &-fraction {
+          color: #909194;
+          .swiper-pagination-current {
+            color: #f9fafb;
+          }
+        }
+      }
+    }
+  }
+  .ixi-O-bottom-sheet{
+    background:$neutral0;
+    &__header {
+      .bar {
+        background-color: #37383A;
+      }
+    }
+    &__contents {
+      .analyze-box {
+        &__title-wrap {
+          .sub-title {
+            color: #a8a9ac;
+          }
+          .title {
+            color: #fcfcfd;
+          }
+          .user-info {
+            .user {
+              em {
+                color: #a8a9ac;
+              }
+              span {
+                color: #909194;
+              }
+            }
+            .time {
+              color: #c4c5c8;
+              &::before {
+                background: #909194;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .ixi-O-contents-view {
+    &__header {
+      background: #232425;
+    }
+    &__contents {
+      background: #232425;
+      .title-wrap {
+        .title {
+          color: #f2f3f6;
+        }
+        .desc {
+          color: #a8a9ac;
+        }
+      }
+      .ixi-O-guide-wrap {
+        background:#232425;
+        & > .title {
+          color: #a8a9ac;
+        }
+        .guide-list {
+          .item {
+            & + .item {
+              border-top: 1px solid #34383d;
+            }
+            &__title {
+              .title {
+                color: #f2f3f6;
+              }
+              .desc {
+                color: #a8a9ac;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.GuidePage.dark{
+  background-color: #232425;
+  .header {
+    span{
+      color: var(--text-neutral_6, #fcfcfd);
+    }
+  }
+  .body{
+    .title {
+      color: var(--text-neutral_6, #fcfcfd);
+    }
+    .content {
+      color: var(--text-neutral_3, #d4d5d8);
+      .highlight {
+        color: var(--local-color-purple-3, #a860ff);
+      }
+    }
+    //버튼영역은 디자인 나오면 수정
+    .custom-button {
+      background: var(--container-neutral_0, #232425);
+      border: 1px solid var(--border-neutral_1, #e7ebee);
+      .text {
+        color: var(--text-secondary, #ffffff);
+      }
+    }
+  }
+}
