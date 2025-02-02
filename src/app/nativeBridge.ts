@@ -38,11 +38,11 @@ const sendEventToIOS = (key: string, param?: any) => {
         ...(param && { data: param }),
     };
 
-    if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.dataHandler) {
-        const stringifiedObject = JSON.stringify(parameter);
-        window.webkit.messageHandlers.dataHandler.postMessage(stringifiedObject);
-    } else {
-    }
+    // if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.dataHandler) {
+    //     const stringifiedObject = JSON.stringify(parameter);
+    //     window.webkit.messageHandlers.dataHandler.postMessage(stringifiedObject);
+    // } else {
+    // }
 };
 
 const sendEventToAOS = (key: string, param?: any) => {
@@ -50,21 +50,22 @@ const sendEventToAOS = (key: string, param?: any) => {
         type: key,
         ...(param && { data: param }),
     };
-    if (window.Android) {
-        const stringifiedObject = JSON.stringify(parameter);
-        window.Android.dataHandler(stringifiedObject);
-    } else {
-    }
+    // if (window.Android) {
+    //     const stringifiedObject = JSON.stringify(parameter);
+    //     window.Android.dataHandler(stringifiedObject);
+    // } else {
+    // }
 };
 
 function initSendEventFn() {
-    if (window.webkit) {
-        return sendEventToIOS;
-    } else if (window.Android) {
-        return sendEventToAOS;
-    } else {
-        return () => {};
-    }
+  return sendEventToIOS;
+    // if ((window as any)?.webkit) {
+        
+    // } else if ((window as any)?.Android) {
+    //     return sendEventToAOS;
+    // } else {
+    //     return () => {};
+    // }
 }
 
 const sendEventFn = initSendEventFn();

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 interface BottomSheetProps {
     children: React.ReactNode;
@@ -10,7 +10,7 @@ interface BottomSheetProps {
 const BottomSheet: React.FC<BottomSheetProps> = ({ children, initialOffsetY }) => {
     //화면 비율로 수정
     const pxOffset = initialOffsetY + 24; //24px
-    initialOffsetY = (pxOffset / window.innerHeight) * 100;
+    initialOffsetY =90;
 
     const sheetRef = useRef<HTMLDivElement>(null);
     const [offsetY, setOffsetY] = useState<number>(initialOffsetY); // 초기값으로 사용
