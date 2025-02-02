@@ -4,12 +4,13 @@ import BottomSheet from './BottomSheat';
 import AnalyzeSwiperSection from './AnalyzeSwiperSection';
 import './assets/scss/common.scss';
 import './assets/reset.css';
+import ClientBottomSheet from './ClientBottomSheet';
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 async function getData() {
     const res = await fetch('https://search-services.aicall-lgudev.com/v1/search/list?', {
         headers: {
-            Authorization: 'Bearer ' + process.env.NEXT_PUBLIC_AUTH_TOKEN, 
+            Authorization: 'Bearer ' + process.env.NEXT_PUBLIC_AUTH_TOKEN,
             'Content-Type': 'application/json',
         },
     });
@@ -25,10 +26,10 @@ async function getData() {
 
 export default async function Home() {
     const theme = 'dark';
-    const topOffset = 0;
+    const topOffset = 800;
 
     let data = await getData();
-    data = data.data
+    data = data.data;
     console.log('API Response: data.callList :', data);
 
     return (
@@ -56,11 +57,11 @@ export default async function Home() {
             </div>
 
             <RotateSwiperSection callList={[data.callList?.[0]]} />
-            {/* {data?.callList?.length > 1 && (
-                <BottomSheet initialOffsetY={topOffset}>
+            {data?.callList?.length > 1 && (
+                <ClientBottomSheet initialTopOffset={topOffset}>
                     <AnalyzeSwiperSection callList={data.callList.slice(1)} />
-                </BottomSheet>
-            )} */}
+                </ClientBottomSheet>
+            )}
         </div>
     );
 }
