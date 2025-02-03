@@ -8,7 +8,7 @@ import { Call } from './types';
 import dynamic from 'next/dynamic';
 
 const SwiperComponent = dynamic(() => import('./SwiperComponent'), {
-    ssr: true, // 서버 사이드 렌더링 비활성화
+    ssr: false, // 서버 사이드 렌더링 비활성화
 });
 
 interface RotateSwiperProps {
